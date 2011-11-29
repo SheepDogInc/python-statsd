@@ -2,6 +2,14 @@ import logging
 import socket
 import random
 
+try:
+    from django.conf import settings
+except:
+    import default_settings as settings
+
+HOST = getattr(settings, 'STATSD_HOST', 'localhost')
+PORT = getattr(settings, 'STATSD_PORT', 8125)
+RATE = getattr(settings, 'STATSD_SAMPLE_RATE', 1)
 
 class Connection(object):
     '''Statsd Connection
@@ -11,10 +19,11 @@ class Connection(object):
     :keyword sample_rate: The sample rate, defaults to `1` (meaning always)
     '''
 
-    def __init__(self, host='localhost', port=8125, sample_rate=1):
-        self._host = host or 'localhost'
-        self._port = int(port) or 8125
-        self._sample_rate = sample_rate or 1.0
+    def __init__(self, host=None, port=None, sample_rate=None):
+        self._host = host or HOST
+        self._port = int(port) or PORT
+        self._sample_rate = sample_rate or RATE
+        
         self.logger = logging.getLogger('%s.%s'
             % (__name__, self.__class__.__name__))
         self.udp_sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)

@@ -21,6 +21,12 @@ If you want to run the tests first, run `python setup.py nosetests`
 Usage
 =====
 
+Settings
+--------
+
+statsd will look for a local_settings file. with default settings for a connection. with support
+for `django.conf.settings` override.
+
 To get started real quick, just try something like this:
 
 Basic Usage

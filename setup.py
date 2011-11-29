@@ -12,8 +12,9 @@ setup(
     author = 'Rick van Hattem',
     author_email = 'Rick.van.Hattem@Fawo.nl',
     description = '''statsd is a client for Etsy's node-js statsd server. 
-        A proxy for the Graphite stats collection and graphing server.''',
-    url='https://github.com/WoLpH/python-statsd',
+        A proxy for the Graphite stats collection and graphing server.
+        Forked by Sheepdog''',
+    url='https://github.com/SheepDogInc/python-statsd',
     license = 'BSD',
     packages=['statsd'],
     long_description=long_description,
