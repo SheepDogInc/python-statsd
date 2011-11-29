@@ -24,7 +24,7 @@ class Connection(object):
 
     def __init__(self, host=None, port=None, sample_rate=None):
         self._host = host or HOST
-        self._port = int(port) or PORT
+        self._port = int(port) if port else PORT
         self._sample_rate = sample_rate or RATE
         
         self.logger = logging.getLogger('%s.%s'
