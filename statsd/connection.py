@@ -1,10 +1,13 @@
 import logging
 import socket
 import random
+import os
 
-try:
+# Check if the user is running under django, and load up
+# the awesome settings instead.
+if os.environ.get('DJANGO_SETTINGS_MODULE', False):
     from django.conf import settings
-except:
+else:
     import default_settings as settings
 
 HOST = getattr(settings, 'STATSD_HOST', 'localhost')
